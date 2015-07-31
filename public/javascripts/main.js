@@ -55,10 +55,12 @@
 
 	var React = __webpack_require__(2);
 	var Router = __webpack_require__(158);
-
 	var Content = __webpack_require__(197);
+	var routes = __webpack_require__(198);
 
-	React.render(React.createElement(Content, null), document.body);
+	Router.run(routes, function (Root, state) {
+	  React.render(React.createElement(Root, null), document.body);
+	});
 
 /***/ },
 /* 2 */
@@ -23550,23 +23552,134 @@
 /* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(2);
+	var Router = __webpack_require__(158);
+	var RouteHandler = Router.RouteHandler;
 
 	var Content = React.createClass({
-	  displayName: "Content",
+	  displayName: 'Content',
 
 	  render: function render() {
 	    return React.createElement(
-	      "div",
+	      'div',
 	      { className: "content" },
-	      "This is the main content"
+	      React.createElement(
+	        'h1',
+	        null,
+	        'This is the main content'
+	      ),
+	      React.createElement(RouteHandler, null)
 	    );
 	  }
 	});
 
 	module.exports = Content;
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(2);
+	var Router = __webpack_require__(158);
+	var Route = Router.Route;
+	var DefaultRoute = Router.DefaultRoute;
+
+	var Content = __webpack_require__(197);
+	var Welcome = __webpack_require__(199);
+	var About = __webpack_require__(200);
+	var Login = __webpack_require__(201);
+
+	var routes = React.createElement(
+		Route,
+		{ path: '/', handler: Content },
+		React.createElement(Route, { path: 'About', handler: About }),
+		React.createElement(Route, { path: 'Login', handler: Login }),
+		React.createElement(DefaultRoute, { handler: Welcome })
+	);
+
+	module.exports = routes;
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Welcome = React.createClass({
+	  displayName: "Welcome",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "welcome" },
+	      React.createElement(
+	        "h1",
+	        null,
+	        "Welcome"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Welcome;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var About = React.createClass({
+	  displayName: "About",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "about" },
+	      React.createElement(
+	        "h1",
+	        null,
+	        "About"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = About;
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(2);
+
+	var Login = React.createClass({
+	  displayName: "Login",
+
+	  render: function render() {
+	    return React.createElement(
+	      "div",
+	      { className: "login" },
+	      React.createElement(
+	        "h1",
+	        null,
+	        "Login"
+	      )
+	    );
+	  }
+	});
+
+	module.exports = Login;
 
 /***/ }
 /******/ ]);
