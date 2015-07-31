@@ -4,5 +4,5 @@ var Content = require('./components/Content.jsx');
 var routes = require('./routes.jsx');
 
 Router.run(routes, function(Root, state) {
-  React.render(<Root/>, document.body);
+  React.render(<Root />, document.body);
 });
